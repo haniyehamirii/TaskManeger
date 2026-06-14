@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { BiSolidSend } from "react-icons/bi";
+import type { Task } from '../types/board';
 
-interface typeTask {
-  taskJob: string;
-}
+
 
 const Inbox = () => {
     const [isClick, setIsClick] = useState(false);
     const [text, setText] = useState("")
-    const [tasks, setTasks] = useState<typeTask[]>([])
+    const [tasks, setTasks] = useState<Task[]>([])
     
     const handleClick = () => {
         setIsClick(clikc => !clikc)
@@ -18,15 +17,14 @@ const Inbox = () => {
       if(!text.trim()) return
        
        
-      setTasks(prv => [...prv, {taskJob : text}])
+      setTasks(prv => [...prv, {id: crypto.randomUUID(), title : text}])
       setText("")
       setIsClick(false)
     }
 
-
-   const handleDelete = (index: number) => {
-    setTasks(prv => prv.filter((_,item) => item !== index))
-   }
+const handleDelete = (id: string) => {
+  setTasks(prev => prev.filter(task => task.id !== id));
+};
 
   return (
   <div className='bg-[#111] text-[#ece9e9ce] h-72 w-60 rounded-[1.1rem]'>
@@ -55,13 +53,13 @@ const Inbox = () => {
 
     {tasks.length > 0 || isClick === true ? (
       <div className='w-[90%] flex flex-col gap-2'>
-        {tasks.map((item, index) => (
+        {tasks.map((item) => (
           <div
-            key={index}
+            key={item.id}
             className='bg-[#442e1f] rounded-[0.75rem] p-2 relative'
           >
-           <p className='text-[13px]'>{item.taskJob}</p>   
-           <button onClick={() => handleDelete(index)} className='absolute right-3 top-2 text-[14px] cursor-pointer'>x</button>
+           <p className='text-[13px]'>{item.title}</p>   
+           <button onClick={() => handleDelete(item.id)} className='absolute right-3 top-2 text-[14px] cursor-pointer'>x</button>
           </div>
         ))}
       </div>
