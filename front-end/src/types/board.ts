@@ -1,4 +1,4 @@
-export interface Column {
+export interface  TypeColumn {
 id: string;
 title: string;
 }

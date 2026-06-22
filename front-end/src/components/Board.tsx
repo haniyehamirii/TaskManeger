@@ -3,8 +3,7 @@ import { BiSolidSend } from "react-icons/bi";
 import type { Task } from '../types/board';
 
 
-
-const Inbox = () => {
+const Board = ({title} : {title: string}) => {
     const [isClick, setIsClick] = useState(false);
     const [text, setText] = useState("")
     const [tasks, setTasks] = useState<Task[]>([])
@@ -28,7 +27,8 @@ const handleDelete = (id: string) => {
 
   return (
   <div className='bg-[#111] text-[#ece9e9ce] h-72 w-60 rounded-[1.1rem]'>
-  <div className='flex flex-col justify-center p-3 gap-3 items-center'>
+    <h2 className='p-4 pb-0 capitalize'>{title}</h2>
+  <div className='flex flex-col  justify-center p-3 gap-3 items-center'>
     <button
       onClick={handleClick}
       className='border-1 rounded-[0.75rem] cursor-pointer text-[13px] border-dashed flex items-center justify-center border-[#eeeeee2c] h-8 w-[90%] p-2'
@@ -42,7 +42,7 @@ const handleDelete = (id: string) => {
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder='text'
-          className='bg-[#442e1f]  p-2 text-[13px] focus:outline-none  w-[90%] rounded-[0.75rem] h-9'
+          className='bg-[#442e1f]  p-2 text-[13px] focus:outline-none w-[90%] rounded-xl h-9'
         />
 
         <button onClick={handleSubmit} className='absolute bottom-2 right-5'>
@@ -51,7 +51,7 @@ const handleDelete = (id: string) => {
       </div>
     )}
 
-    {tasks.length > 0 || isClick === true ? (
+    {tasks.length > 0 || isClick === true && 
       <div className='w-[90%] flex flex-col gap-2'>
         {tasks.map((item) => (
           <div
@@ -63,12 +63,10 @@ const handleDelete = (id: string) => {
           </div>
         ))}
       </div>
-    ) : (
-      <div className='mt-15 text-[14px]'>inbox is empty</div>
-    )}
+    }
   </div>
 </div>
   )
 }
 
-export default Inbox
+export default Board

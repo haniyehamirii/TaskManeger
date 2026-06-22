@@ -1,11 +1,11 @@
-import Inbox from "./componens/Inbox"
+import Column from "./components/Column"
 
 
 function App() {
 
   return (
     <div className="p-4">
-       <Inbox />
+      <Column />
     </div>
   )
 }
