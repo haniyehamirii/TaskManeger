@@ -51,19 +51,19 @@ const handleDelete = (id: string) => {
       </div>
     )}
 
-    {tasks.length > 0 || isClick === true && 
+    {tasks.length > 0 || isClick === true ?
       <div className='w-[90%] flex flex-col gap-2'>
         {tasks.map((item) => (
           <div
             key={item.id}
-            className='bg-[#442e1f] rounded-[0.75rem] p-2 relative'
+            className='bg-[#442e1f] rounded-xl p-2 relative'
           >
            <p className='text-[13px]'>{item.title}</p>   
            <button onClick={() => handleDelete(item.id)} className='absolute right-3 top-2 text-[14px] cursor-pointer'>x</button>
           </div>
         ))}
       </div>
-    }
+   : <></>}
   </div>
 </div>
   )
