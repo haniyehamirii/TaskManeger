@@ -9,12 +9,12 @@ onDelete: () => void
 }
 
 const Board = ({title, onDelete} : boardProps) => {
-    const [isClick, setIsClick] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     const [text, setText] = useState("")
     const [tasks, setTasks] = useState<Task[]>([])
     
     const handleClick = () => {
-        setIsClick(clikc => !clikc)
+        setIsOpen(clikc => !clikc)
     }
 
     const handleSubmit = () => {
@@ -23,7 +23,7 @@ const Board = ({title, onDelete} : boardProps) => {
        
       setTasks(prv => [...prv, {id: crypto.randomUUID(), title : text}])
       setText("")
-      setIsClick(false)
+      setIsOpen(false)
     }
 
 const handleDelete = (id: string) => {
@@ -48,7 +48,7 @@ const handleDelete = (id: string) => {
       Add task
     </button>
 
-    {isClick && (
+    {isOpen && (
       <div className='relative flex flex-col justify-center items-center w-full'>
         <textarea
           value={text}
@@ -63,7 +63,7 @@ const handleDelete = (id: string) => {
       </div>
     )}
 
-    {tasks.length > 0 || isClick === true ?
+    {tasks.length > 0 || isOpen === true ?
       <div className='w-[90%] flex flex-col gap-2'>
         {tasks.map((item) => (
           <div

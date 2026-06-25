@@ -2,7 +2,7 @@ import { useState } from "react";
 import { RiStickyNoteAddFill } from "react-icons/ri";
 import type { TypeColumn } from "../types/board";
 import Board from "./Board";
-import { TiDelete } from "react-icons/ti";
+
 
 const Column = () => {
 
