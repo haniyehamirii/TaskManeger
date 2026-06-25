@@ -1,9 +1,14 @@
 import { useState } from 'react'
 import { BiSolidSend } from "react-icons/bi";
 import type { Task } from '../types/board';
+import { TiDelete } from "react-icons/ti";
 
+type boardProps = {
+title: string,
+onDelete: () => void
+}
 
-const Board = ({title} : {title: string}) => {
+const Board = ({title, onDelete} : boardProps) => {
     const [isClick, setIsClick] = useState(false);
     const [text, setText] = useState("")
     const [tasks, setTasks] = useState<Task[]>([])
@@ -27,11 +32,18 @@ const handleDelete = (id: string) => {
 
   return (
   <div className='bg-[#111] text-[#ece9e9ce] h-72 w-60 rounded-[1.1rem]'>
-    <h2 className='p-4 pb-0 capitalize'>{title}</h2>
+    <div className='flex p-2 pb-0 items-center justify-between'>
+      <h2 className='pl-3 capitalize'>{title}</h2>
+      <button onClick={onDelete} className='cursor-pointer'>
+        <TiDelete size={25} color='#ece9e9ce' />
+      </button>
+      
+    </div>
+    
   <div className='flex flex-col  justify-center p-3 gap-3 items-center'>
     <button
       onClick={handleClick}
-      className='border-1 rounded-[0.75rem] cursor-pointer text-[13px] border-dashed flex items-center justify-center border-[#eeeeee2c] h-8 w-[90%] p-2'
+      className='border rounded-xl cursor-pointer text-[13px] border-dashed flex items-center focus:outline-none justify-center border-[#eeeeee2c] h-8 w-[90%] p-2'
     >
       Add task
     </button>
@@ -59,7 +71,7 @@ const handleDelete = (id: string) => {
             className='bg-[#442e1f] rounded-xl p-2 relative'
           >
            <p className='text-[13px]'>{item.title}</p>   
-           <button onClick={() => handleDelete(item.id)} className='absolute right-3 top-2 text-[14px] cursor-pointer'>x</button>
+           <button onClick={() => handleDelete(item.id)} className='absolute right-1 top-2 text-[14px] cursor-pointer'><TiDelete size={22} /></button>
           </div>
         ))}
       </div>

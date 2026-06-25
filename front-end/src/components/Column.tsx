@@ -2,7 +2,7 @@ import { useState } from "react";
 import { RiStickyNoteAddFill } from "react-icons/ri";
 import type { TypeColumn } from "../types/board";
 import Board from "./Board";
-
+import { TiDelete } from "react-icons/ti";
 
 const Column = () => {
 
@@ -19,12 +19,18 @@ const Column = () => {
     setTitle("")
   }
 
+
+ const handleDelete = (id: string) => {
+  setBoard(prv => prv.filter(item => item.id !== id))
+ }
+
+
   return (
     <div className='text-[#ece9e9ce]'>
 
-      <button onClick={() => setIsOpen(prv => !prv)} className='bg-[#222] rounded-[0.95rem] cursor-pointer gap-1 pt-1 p-2 flex items-center'>
+      <button onClick={() => setIsOpen(prv => !prv)} className='bg-[#222] rounded-2xl cursor-pointer gap-1 w-23 justify-center p-2  flex items-center'>
        Board 
-       <RiStickyNoteAddFill color="#ece9e9ce" size={20} className="mt-1" />
+       <RiStickyNoteAddFill color="#ece9e9ce" size={22} className="mt-1" />
       </button>
 
       {isOpen &&
@@ -37,7 +43,7 @@ const Column = () => {
        <div className="mt-10 flex gap-5 p-4 flex-col items-center min-[470px]:flex-row">
         {board.map((item) =>
           <div key={item.id}>
-            <Board title={item.title} />
+            <Board title={item.title} onDelete={() => handleDelete(item.id)} />
           </div>
           )}
        </div>
