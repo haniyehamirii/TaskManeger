@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { BiSolidSend } from "react-icons/bi";
 import type { Task } from '../types/board';
 import { TiDelete } from "react-icons/ti";
+import { format } from 'date-fns';
 
 type boardProps = {
 title: string,
@@ -14,14 +15,14 @@ const Board = ({title, onDelete} : boardProps) => {
     const [tasks, setTasks] = useState<Task[]>([])
     
     const handleClick = () => {
-        setIsOpen(clikc => !clikc)
+        setIsOpen(prv => !prv)
     }
 
     const handleSubmit = () => {
       if(!text.trim()) return
        
        
-      setTasks(prv => [...prv, {id: crypto.randomUUID(), title : text}])
+      setTasks(prv => [...prv, {id: crypto.randomUUID(), title : text, createAt: new Date()}])
       setText("")
       setIsOpen(false)
     }
@@ -70,8 +71,16 @@ const handleDelete = (id: string) => {
             key={item.id}
             className='bg-[#442e1f] rounded-xl p-2 relative'
           >
-           <p className='text-[13px]'>{item.title}</p>   
-           <button onClick={() => handleDelete(item.id)} className='absolute right-1 top-2 text-[14px] cursor-pointer'><TiDelete size={22} /></button>
+
+           <p className='text-[13px]'>{item.title}</p> 
+             
+           <div className='absolute right-1 top-2 flex gap-1 items-center'>
+            <div className='bg-[#f0dbdb34] text-[9px] rounded-full px-2 flex items-center justify-center h-4'>
+              <p>{format(item.createAt,"dd MMM ")}</p>
+            </div>
+            <button onClick={() => handleDelete(item.id)} className=' text-[14px] cursor-pointer'><TiDelete size={22} /></button>
+           </div >
+          
           </div>
         ))}
       </div>

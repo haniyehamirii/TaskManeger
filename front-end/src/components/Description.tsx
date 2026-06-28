@@ -17,7 +17,7 @@ const Description = () => {
         </div>
        
          
-        <p className="text-[13px] mt-2">hiii u should change this button color</p>
+        <p className="text-[13px] mt-1">hiii u should change this button color sjdkls iodjsljsd oijsldkj sfojiosd jo</p>
 
       {isOpen && 
         <div className="flex relative items-center justify-center flex-col">
@@ -28,7 +28,7 @@ const Description = () => {
            className='bg-[#222]  p-2 text-[13px] pr-7 focus:outline-none w-full rounded-xl h-12 mt-3 text-[#ece9e9ce]  placeholder:text-[#ece9e9ce] placeholder:text-[12px]'
            />
            <button className="absolute bottom-1 right-2">
-             <BiSolidSend color="#fff"/> 
+             <BiSolidSend color="#fff" size={15}/> 
             </button> 
          </div>
         }
