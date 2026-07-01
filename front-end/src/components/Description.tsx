@@ -7,10 +7,10 @@ import type { Task } from "../types/board";
 type descriptionProps = {
   setTasks: Dispatch<SetStateAction<Task[]>>
   openModalId: string | null
-  tasks: Task[]
+  task: Task[]
 }
 
-const Description = ({setTasks, openModalId, tasks}: descriptionProps) => {
+const Description = ({setTasks, openModalId, task}: descriptionProps) => {
   const[text,setText] = useState("")
  const [isOpen, setIsOpen] = useState(false)
 
@@ -31,7 +31,7 @@ const Description = ({setTasks, openModalId, tasks}: descriptionProps) => {
        
         </div>
         
-       {tasks.map(item => item.id === openModalId ? <p className="text-[13px] mt-1">{item.description}</p>: "")}
+       {task.map(item => item.id === openModalId ? <p className="text-[13px] mt-1">{item.description}</p>: "")}
          
        
 
