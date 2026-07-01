@@ -8,10 +8,10 @@ type modalProps = {
   closeModal: () => void
   setTasks: Dispatch<SetStateAction<Task[]>>
   openModalId: string | null
-  tasks: Task[]
+  task: Task[]
 }
 
-const Modal = ({closeModal, openModalId, setTasks, tasks}: modalProps ) => {
+const Modal = ({closeModal, openModalId, setTasks, task}: modalProps ) => {
 
   return (
     <div className="bg-[#222] p-2 px-3.75 pb-10 rounded-3xl  text-[#ece9e9ce] w-52">
@@ -28,10 +28,10 @@ const Modal = ({closeModal, openModalId, setTasks, tasks}: modalProps ) => {
       <Description 
        setTasks={setTasks}
        openModalId={openModalId}
-       tasks={tasks}
+       task={task}
        />
        
-      <Label />
+      <Label openModalId={openModalId} setTasks={setTasks} task={task}/>
         
     </div>
   )

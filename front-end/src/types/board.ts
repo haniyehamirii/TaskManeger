@@ -7,6 +7,6 @@ export interface Task {
 id: string;
 title: string;
 description?: string;
-label?: string[];
+label: string[];
 createAt: Date;
 }

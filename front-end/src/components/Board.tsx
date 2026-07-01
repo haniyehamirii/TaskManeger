@@ -29,8 +29,9 @@ const Board = ({title, onDelete} : boardProps) => {
       const newTask : Task= {
        id: crypto.randomUUID(), 
        title : text,
+       description: "",
+       label: [],
        createAt: new Date(),
-       description: ""
       }
        
       setTasks(prv => [...prv, newTask])
@@ -82,9 +83,27 @@ const handleDelete = (id: string) => {
           <div
             key={item.id}
             className='bg-[#b38867de] rounded-xl p-2.75 relative'
-          >
-
+          > 
+          
            <h2 className='text-[13px] capitalize font-bold'>{item.title}</h2> 
+
+           {item.label.length > 0 && 
+            <div className="flex gap-1 flex-wrap mt-3 mb-2">
+               {item?.label?.map((item,i) => (
+               <div
+                key={i}
+                 className="bg-[#222] w-12 flex items-center justify-center text-[#b38867de] h-6 rounded-full text-[12px]"
+                 >
+          
+                 <span className='-mt-0.5'>{item}</span>
+           
+                </div>
+               ))}
+           </div>
+           }
+           
+
+         
            <p className='text-[13px] mt-2'>{item?.description}</p>
              
            <div className='absolute right-1 top-2 flex gap-1 items-center'>
@@ -99,7 +118,8 @@ const handleDelete = (id: string) => {
              <div className='bg-[#f3efef50] text-[9px] w-14 gap-1  rounded-full mt-3 px-2 flex items-center justify-center h-4.75'>
                <GoClockFill size={11}  color='#333'/>
               <p>{format(item.createAt,"dd MMM ")}</p>
-            </div>
+             </div>
+
           </div>
         ))}
       </div>
@@ -109,9 +129,9 @@ const handleDelete = (id: string) => {
    <div className='fixed inset-0 bg-black/70 flex items-center justify-center flex-col '>       
        <Modal 
          closeModal={() => setOpenModalId(null)}
-         tasks={tasks}
          setTasks={setTasks}
          openModalId={openModalId}
+         task={tasks}
          />
 
     </div>
