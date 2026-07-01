@@ -1,3 +1,5 @@
+import { TiDelete } from "react-icons/ti";
+
 interface LabelType {
   label: string;
 }
@@ -12,18 +14,19 @@ const Label = () => {
   ];
 
   return (
-    <div>
+    <div className="mt-3">
       <h2 className="font-bold">Label</h2>
        
-       <div className="flex gap-3 flex-wrap">
+       <div className="flex gap-3 flex-wrap mt-4">
       {labels.map((item) => (
         <div
           key={item.label}
-          className="bg-blue-500 p-1 gap-2 h-5 rounded-full flex w-12 items-center justify-between text-[12px]"
+          className="bg-[#b38867de] px-1 text-[#222] h-7 rounded-full flex items-center gap-1 text-[12px]"
         >
-          <span>  {item.label}</span>
-        
-          <span className="pr-0.5">x</span>
+          
+           <span className="pl-1">{item.label}</span> 
+           <TiDelete size={18} className="mt-0.5"/>
+         
         </div>
       ))}
       </div>
